@@ -7,20 +7,20 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      value: "contato@juliocezar.dev",
-      link: "mailto:contato@juliocezar.dev",
+      value: "juliocezinha429@gmail.com",
+      link: "mailto:juliocezinha429@gmail.com",
     },
     {
       icon: <Github className="w-6 h-6" />,
       title: "GitHub",
-      value: "github.com/juliocezar",
-      link: "https://github.com",
+      value: "github.com/JulioCezarTI",
+      link: "https://github.com/JulioCezarTI",
     },
     {
       icon: <Linkedin className="w-6 h-6" />,
       title: "LinkedIn",
-      value: "linkedin.com/in/juliocezar",
-      link: "https://linkedin.com",
+      value: "linkedin.com/in/júlio-cezaar-rodrigues-pimentel",
+      link: "https://www.linkedin.com/in/júlio-cezaar-rodrigues-pimentel-659568398/",
     },
     {
       icon: <MapPin className="w-6 h-6" />,
@@ -86,7 +86,7 @@ const Contact = () => {
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 animate-glow-pulse"
                 asChild
               >
-                <a href="mailto:contato@juliocezar.dev">
+                <a href="mailto:juliocezinha429@gmail.com">
                   <Mail className="w-5 h-5 mr-2" />
                   Enviar Mensagem
                 </a>

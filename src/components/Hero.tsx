@@ -91,7 +91,7 @@ const Hero = () => {
               <Github size={28} />
             </a>
             <a
-              href="https://linkedin.com/in/juliocezar"
+              href="https://www.linkedin.com/in/júlio-cezaar-rodrigues-pimentel-659568398/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
@@ -99,7 +99,7 @@ const Hero = () => {
               <Linkedin size={28} />
             </a>
             <a
-              href="mailto:juliocezar.dev@email.com"
+              href="mailto:juliocezinha429@gmail.com"
               className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
             >
               <Mail size={28} />
