@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
 import codeBackground from "@/assets/code-background.jpg";
+import { useGitHubData } from "@/hooks/useGitHubData";
 
 const Hero = () => {
+  const { data: githubData } = useGitHubData();
   const [text, setText] = useState("");
   const fullText = "Desenvolvedor de Sistemas";
   const [showCursor, setShowCursor] = useState(true);
@@ -59,8 +61,7 @@ const Hero = () => {
               </h2>
             </div>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              16 anos, apaixonado por tecnologia e desenvolvimento. Especializado em criar
-              soluções inovadoras e eficientes que transformam ideias em realidade.
+              {githubData?.profile.bio || "16 anos, apaixonado por tecnologia e desenvolvimento. Especializado em criar soluções inovadoras e eficientes que transformam ideias em realidade."}
             </p>
           </div>
 
@@ -82,7 +83,7 @@ const Hero = () => {
 
           <div className="flex gap-6 justify-center items-center pt-4">
             <a
-              href="https://github.com"
+              href={githubData?.profile.html_url || "https://github.com/JulioCezarTI"}
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
@@ -90,7 +91,7 @@ const Hero = () => {
               <Github size={28} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/juliocezar"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
@@ -98,7 +99,7 @@ const Hero = () => {
               <Linkedin size={28} />
             </a>
             <a
-              href="mailto:contato@email.com"
+              href="mailto:juliocezar.dev@email.com"
               className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
             >
               <Mail size={28} />

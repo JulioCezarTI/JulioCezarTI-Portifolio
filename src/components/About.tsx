@@ -1,7 +1,10 @@
-import { Code2, Rocket, Users } from "lucide-react";
+import { Code2, Rocket, Users, MapPin, Briefcase } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { useGitHubData } from "@/hooks/useGitHubData";
 
 const About = () => {
+  const { data: githubData } = useGitHubData();
+
   const highlights = [
     {
       icon: <Code2 className="w-8 h-8 text-primary" />,
@@ -33,6 +36,11 @@ const About = () => {
 
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 animate-fade-in">
+              {githubData?.profile.bio && (
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {githubData.profile.bio}
+                </p>
+              )}
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Com 16 anos, sou um desenvolvedor de sistemas apaixonado por tecnologia e
                 inovação. Minha jornada no desenvolvimento começou pela curiosidade de entender
@@ -43,11 +51,40 @@ const About = () => {
                 tecnologias e boas práticas. Meu foco está em escrever código limpo,
                 escalável e que resolva problemas reais.
               </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                Além do código, valorizo muito o trabalho em equipe, a comunicação clara e o
-                aprendizado contínuo. Estou sempre em busca de novos desafios que me permitam
-                crescer profissionalmente.
-              </p>
+              
+              {(githubData?.profile.location || githubData?.profile.company) && (
+                <div className="flex flex-wrap gap-4 pt-4">
+                  {githubData.profile.location && (
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <span>{githubData.profile.location}</span>
+                    </div>
+                  )}
+                  {githubData.profile.company && (
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <Briefcase className="w-4 h-4 text-primary" />
+                      <span>{githubData.profile.company}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+              
+              {githubData && (
+                <div className="grid grid-cols-3 gap-4 pt-4">
+                  <div className="text-center p-4 bg-secondary/30 rounded-lg">
+                    <div className="text-2xl font-bold text-primary">{githubData.profile.public_repos}</div>
+                    <div className="text-sm text-muted-foreground">Repositórios</div>
+                  </div>
+                  <div className="text-center p-4 bg-secondary/30 rounded-lg">
+                    <div className="text-2xl font-bold text-primary">{githubData.profile.followers}</div>
+                    <div className="text-sm text-muted-foreground">Seguidores</div>
+                  </div>
+                  <div className="text-center p-4 bg-secondary/30 rounded-lg">
+                    <div className="text-2xl font-bold text-primary">{githubData.profile.following}</div>
+                    <div className="text-sm text-muted-foreground">Seguindo</div>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="space-y-4">

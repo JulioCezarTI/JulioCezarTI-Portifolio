@@ -1,7 +1,45 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { useGitHubData } from "@/hooks/useGitHubData";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Skills = () => {
-  const skillCategories = [
+  const { data: githubData, isLoading } = useGitHubData();
+
+  // Mapear linguagens do GitHub para categorias
+  const mapLanguageToCategory = (lang: string): string => {
+    const frontendLangs = ["JavaScript", "TypeScript", "HTML", "CSS", "Vue", "React", "Svelte"];
+    const backendLangs = ["Python", "Java", "Go", "Ruby", "PHP", "C#", "Rust"];
+    
+    if (frontendLangs.includes(lang)) return "Frontend";
+    if (backendLangs.includes(lang)) return "Backend";
+    return "Ferramentas";
+  };
+
+  // Calcular skills dinamicamente se tivermos dados do GitHub
+  const skillCategories = githubData?.topLanguages ? (() => {
+    const categories: Record<string, { name: string; level: number }[]> = {
+      Frontend: [],
+      Backend: [],
+      Ferramentas: []
+    };
+
+    githubData.topLanguages.forEach((lang) => {
+      const category = mapLanguageToCategory(lang.language);
+      const level = Math.min(95, 60 + (lang.count * 5)); // Calcular nível baseado no uso
+      
+      categories[category].push({
+        name: lang.language,
+        level: level
+      });
+    });
+
+    return Object.entries(categories)
+      .filter(([_, skills]) => skills.length > 0)
+      .map(([category, skills]) => ({
+        category,
+        skills: skills.slice(0, 4) // Máximo 4 por categoria
+      }));
+  })() : [
     {
       category: "Frontend",
       skills: [
@@ -30,6 +68,40 @@ const Skills = () => {
       ],
     },
   ];
+
+  if (isLoading) {
+    return (
+      <section id="skills" className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+                Minhas <span className="text-gradient">Skills</span>
+              </h2>
+              <div className="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[...Array(3)].map((_, i) => (
+                <Card key={i} className="bg-card border-border">
+                  <CardContent className="p-6">
+                    <Skeleton className="h-8 w-32 mb-6" />
+                    <div className="space-y-4">
+                      {[...Array(4)].map((_, j) => (
+                        <div key={j}>
+                          <Skeleton className="h-4 w-full mb-2" />
+                          <Skeleton className="h-2 w-full" />
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="skills" className="py-20 bg-background">
