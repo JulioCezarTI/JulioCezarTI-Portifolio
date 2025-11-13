@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, ArrowDown } from "lucide-react";
 import codeBackground from "@/assets/code-background.jpg";
+import profileImage from "@/assets/profile.jpg";
+import codePattern from "@/assets/code-pattern.jpg";
 import { useGitHubData } from "@/hooks/useGitHubData";
 
 const Hero = () => {
@@ -44,14 +46,38 @@ const Hero = () => {
     >
       <div className="container mx-auto px-4 z-10">
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
+          <div className="flex justify-center mb-8">
+            <div className="relative">
+              <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-primary shadow-[var(--shadow-red-glow)] animate-float">
+                <img 
+                  src={profileImage} 
+                  alt="Júlio Cezar Rodrigues Pimentel" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-transparent pointer-events-none"></div>
+            </div>
+          </div>
+          
           <div className="space-y-4">
             <p className="text-primary font-semibold text-lg tracking-wider uppercase">
               Olá, eu sou
             </p>
-            <h1 className="text-5xl md:text-7xl font-bold text-foreground">
-              Júlio Cezar Rodrigues
-              <span className="text-gradient glow-red"> Pimentel</span>
-            </h1>
+            <div className="relative inline-block">
+              <div 
+                className="absolute inset-0 opacity-10 rounded-2xl"
+                style={{
+                  backgroundImage: `url(${codePattern})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  filter: "blur(2px)",
+                }}
+              ></div>
+              <h1 className="relative text-5xl md:text-7xl font-bold text-foreground px-8 py-4">
+                Júlio Cezar Rodrigues
+                <span className="text-gradient glow-red"> Pimentel</span>
+              </h1>
+            </div>
             <div className="h-12 flex items-center justify-center">
               <h2 className="text-2xl md:text-3xl text-muted-foreground font-light">
                 {text}
