@@ -45,8 +45,15 @@ const Navbar = () => {
                 {item.name}
               </a>
             ))}
-            <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              Download CV
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              asChild
+            >
+              <a href="/cv.pdf" download="Julio_Cezar_CV.pdf">
+                Download CV
+              </a>
             </Button>
           </div>
 
@@ -72,8 +79,15 @@ const Navbar = () => {
                 {item.name}
               </a>
             ))}
-            <Button variant="outline" size="sm" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-              Download CV
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+              asChild
+            >
+              <a href="/cv.pdf" download="Julio_Cezar_CV.pdf">
+                Download CV
+              </a>
             </Button>
           </div>
         )}
